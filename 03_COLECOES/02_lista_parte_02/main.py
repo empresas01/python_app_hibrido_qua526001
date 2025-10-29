@@ -1,5 +1,5 @@
 # delcaração de lista
-nome = []
+nomes = []
 
 try:
     while True:
@@ -10,7 +10,7 @@ try:
         match opcao:
             case "1":
                 novo_nome = input("Informe o novo nome: ").strip().title()
-                nome.append(novo_nome)
+                nomes.append(novo_nome)
                 print(f"{novo_nome} Inserido com sucesso!.\n")
                 pass
             case "2":
