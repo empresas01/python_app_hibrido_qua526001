@@ -53,7 +53,7 @@ def listar(session,Pessoa):
 
 
 # update
-def atualiza(session, Pessoa):
+def atualizar(session, Pessoa):
     id_pessoa = ""
     email = ""
     novo_nome = ""
@@ -74,8 +74,6 @@ def atualiza(session, Pessoa):
             case "2":
                 email = input("informe o e-mail: )").strip().lower()
                 pessoas = session.query(Pessoa).filter_by(email=email).first()
-            case "3":
-                return ""
             case _:
                 return "Opção inválida"
             
@@ -127,3 +125,47 @@ def atualiza(session, Pessoa):
             return "Dados atualizados com sucesso."            
     except Exception as e:
         print(f"Não foi poessível alterar os dados. {e}.")
+
+def deletar(session, Pessoa):
+    id_pessoa = ""
+    email = ""
+    pessoa = ""
+
+    print("Informe o campo que deseja pesquisar:")
+    print("1 - ID")
+    print("2 - E-mail")
+    print("3 - Retornar")
+    opcao = input("Informe o campo que deseja pesquisar: ").strip()
+    limpar()
+    match opcao:
+        case "1":
+            id_pessoa = input("Informe o ID a ser excluido: ").strip()
+            pessoa = session.query(Pessoa).filter_by(id_pessoa=id_pessoa).first()
+        case "2":
+            email =input("Informe o e-mail do cadastro a ser excluido: ").strip().lower()
+            pessoa = session.query(Pessoa).filter_by(email=email).first()
+        case "3":
+            return ""
+        case _:
+            return "Opção inválida."
+
+    if pessoa:
+        limpar()
+        print(f"ID: {pessoa.id_pessoa}")
+        print(f"Nome: {pessoa.nome}")
+        print(f"E-mail: {pessoa.email}")
+        print(f"Genero: {pessoa.genero}")
+        print(f"Data de Nascimento: {pessoa.nascimento.strftime("%d/%m/%Y")}")
+        print({'-'*40})
+        print("1 - Sim")
+        print("2 - Não")
+        excluir = input("Tem certeza de que deseja excluir o registro? ").strip()
+        match excluir:
+            case "1":
+                session.delete(pessoa)
+                session.commit()
+                return "Pessoa excluida com sucesso."
+            case "2":
+                return ""
+            case _:
+                return "Opção inválida."

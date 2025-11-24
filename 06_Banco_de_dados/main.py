@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
 from entidades import criar_tb_pessoa
-from modulo import limpar, cadastrar, listar, atualizar
+from modulo import limpar, cadastrar, listar, atualizar, deletar 
 
 def main():
     engine = create_engine("sqlite:///01_crud/database/crud.db")
@@ -18,6 +18,7 @@ def main():
         print("1 - Cadastrar nova pessoa")
         print("2 - Listar pessoa")
         print("3 - Atualizar dados")
+        print("4 - Excluir pessoa")
         opcao = input("Opção desejada: ").strip()
         limpar()
         match opcao:
@@ -28,7 +29,13 @@ def main():
                 print(cadastrar(session, Pessoa))
                 continue
             case "2":
-                print(cadastrar(session, Pessoa))
+                listar(session, Pessoa)
+                continue
+            case "3":
+                print(atualizar(session, Pessoa))
+                continue
+            case "4":
+                print(deletar(session, Pessoa))
                 continue
             case _:
                 print("Opção inválida.")
