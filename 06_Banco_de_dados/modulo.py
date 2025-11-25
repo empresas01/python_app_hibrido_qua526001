@@ -19,12 +19,7 @@ def cadastrar(session, Pessoa):
             return "E-mail já cadastrado."
         else:
             # instancia do objeto
-            nova_pessoa = Pessoa(
-                nome=nome, 
-                nascimento=nascimento,
-                email=email,
-                genero=genero
-            )
+            nova_pessoa = Pessoa(nome=nome, nascimento=nascimento,email=email,genero=genero)
 
             # insert into pessoa
             session.add(nova_pessoa)
