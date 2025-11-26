@@ -16,7 +16,7 @@ def main(page: ft.Page):
         ft.SafeArea(
             ft.Container(
                 counter,
-                alignment=ft.alignment.center,
+                alignment=ft.alignment.center,dasd
             ),
             expand=True,
         )
