@@ -37,6 +37,8 @@ def main(page: ft.Page):
     page.title = "App Flex Fuel"
     page.scroll = "adaptive"
     
+    
+
     # --- Alteração aqui: Adicionando bgcolor branco aos TextFields ---
     gasolina = ft.TextField(
         label="Preço da Gasolina",
@@ -72,7 +74,11 @@ def main(page: ft.Page):
         padding=ft.padding.all(10),
         tooltip="Calcular melhor combustível"
     )
-    
+
+    page.appbar = ft.AppBar( 
+        ft.Icon(name=ft.Icons.FAVORITE, color=ft.Colors.PINK)
+    )
+
     page.add(
         ft.SafeArea(
             ft.Container(
@@ -100,3 +106,5 @@ def main(page: ft.Page):
     )
 
 ft.app(target=main, assets_dir="assets")
+
+# flet run 05_yt_downloader <- comando para rodar o app no terminal
